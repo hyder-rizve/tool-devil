@@ -7,19 +7,12 @@ const db = require("./config/db");
 dotenv.config();
 
 // Import all routes
-const userRoutes = require("./routes/userRoutes");
-const serviceRoutes = require("./routes/serviceRoutes");
-const productRoutes = require("./routes/productRoutes");
-const staffRoutes = require("./routes/staffRoutes");
-const clientRoutes = require("./routes/clientRoutes");
-const expenseRoutes = require("./routes/expenseRoutes");
-const inventoryRoutes = require("./routes/inventoryRoutes");
-const settingsRoutes = require("./routes/settingsRoutes");
-const bookingRoutes = require("./routes/bookingRoutes");
-const productCategoryRoutes = require("./routes/ProductCategoryRoutes");
-const serviceCategoryRoutes = require("./routes/ServiceCategoryRoutes");
-const reportRoutes = require("./routes/reportRoutes");
-const messageRoutes = require("./routes/messageRoutes");
+const userRoute = require("./routes/userRoute");
+const sub_categoryRoute = require("./routes/sub_categoryRoute");
+const productRoute = require("./routes/productRoute");
+const orderRoute = require("./routes/orderRoute");
+const categoryRoute = require("./routes/categoryRoute");
+const brandRoute = require("./routes/brandRoute");
 
 
 const app = express();
@@ -30,19 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API Routes
-app.use("/api", userRoutes);
-app.use("/api", serviceRoutes);
-app.use("/api", productRoutes);
-app.use("/api", staffRoutes);
-app.use("/api", clientRoutes);
-app.use("/api", expenseRoutes);
-app.use("/api", inventoryRoutes);
-app.use("/api", settingsRoutes);
-app.use("/api", productCategoryRoutes);
-app.use("/api", serviceCategoryRoutes);
-app.use("/api", bookingRoutes);
-app.use("/api", reportRoutes);
-app.use("/api", messageRoutes);
+app.use("/api", userRoute);
+app.use("/api", sub_categoryRoute);
+app.use("/api", productRoute);
+app.use("/api", orderRoute);
+app.use("/api", categoryRoute);
+app.use("/api", brandRoute);
 app.post("/api/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -96,20 +82,15 @@ app.post("/api/login", async (req, res) => {
 // Home route
 app.get("/", (req, res) => {
   res.json({
-    message: "Salon Management API",
+    message: "Tool Devil API",
     version: "1.0.0",
     endpoints: {
-      users: "/api/users",
-      services: "/api/services",
-      products: "/api/products",
-      staff: "/api/staff",
-      clients: "/api/clients",
-      expenses: "/api/expenses",
-      inventory: "/api/inventory",
-      settings: "/api/settings",
-      bookings: "/api/bookings",
-      messages: "/api/messages",
-      bookingsByDate: "/api/bookings/date/:date",
+      user: "/api/user",
+      brand: "/api/brand",
+      product: "/api/product",
+      sub_category: "/api/sub_category",
+      order: "/api/order",
+      category: "/api/category",
     },
   });
 });
