@@ -7,12 +7,12 @@ const db = require("./config/db");
 dotenv.config();
 
 // Import all routes
-const userRoute = require("./routes/userRoute");
+//const userRoute = require("./routes/userRoute");
 const sub_categoryRoute = require("./routes/sub_categoryRoute");
 const productRoute = require("./routes/productRoute");
-const orderRoute = require("./routes/orderRoute");
+//const orderRoute = require("./routes/orderRoute");
 const categoryRoute = require("./routes/categoryRoute");
-const brandRoute = require("./routes/brandRoute");
+//const brandRoute = require("./routes/brandRoute");
 
 
 const app = express();
@@ -23,12 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API Routes
-app.use("/api", userRoute);
+//app.use("/api", userRoute);
 app.use("/api", sub_categoryRoute);
 app.use("/api", productRoute);
-app.use("/api", orderRoute);
+//app.use("/api", orderRoute);
 app.use("/api", categoryRoute);
-app.use("/api", brandRoute);
+//app.use("/api", brandRoute);
 app.post("/api/login", async (req, res) => {
   try {
     const { email, password } = req.body;
