@@ -40,6 +40,45 @@ class ProductController {
     }
   }
 
+  static async getProductByBrandId(req, res) {
+    try {
+      const product = await ProductService.getProductByBrandId(
+        req.params.id,
+      );
+      res.status(200).json({ success: true, data: product });
+    } catch (error) {
+      res
+        .status(error.status || 500)
+        .json({ success: false, message: error.message });
+    }
+  }
+
+  static async getProductBySubCategoryId(req, res) {
+    try {
+      const product = await ProductService.getProductBySubCategoryId(
+        req.params.id,
+      );
+      res.status(200).json({ success: true, data: product });
+    } catch (error) {
+      res
+        .status(error.status || 500)
+        .json({ success: false, message: error.message });
+    }
+  }
+
+  static async getProductBySlug(req, res) {
+    try {
+      const product = await ProductService.getProductBySlug(
+        req.params.slug,
+      );
+      res.status(200).json({ success: true, data: product });
+    } catch (error) {
+      res
+        .status(error.status || 500)
+        .json({ success: false, message: error.message });
+    }
+  }
+
 }
 
 module.exports = ProductController;

@@ -18,6 +18,13 @@ class sub_categoryModel {
     return rows;
   }
   
+  static async findByParentId(parentId) {
+    const query = `
+            SELECT * FROM sub_category where parent_id = ?
+        `;
+    const [rows] = await db.execute(query, [parentId]);
+    return rows;
+  }
 }
 
 module.exports = sub_categoryModel;

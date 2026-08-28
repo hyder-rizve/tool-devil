@@ -55,6 +55,23 @@ class Sub_CategoryService {
     return sub_category;
   }
 
+  static async getSub_categoryByParentId(parent_id) {
+    if (!parent_id || isNaN(parent_id)) {
+      const error = new Error("Valid parent ID is required");
+      error.status = 400;
+      throw error;
+    }
+
+    const sub_category = await sub_categoryModel.findByParentId(parent_id);
+    if (!parent_id) {
+      const error = new Error("parent ID not found");
+      error.status = 404;
+      throw error;
+    }
+
+    return sub_category;
+  }
+
 }
 
 module.exports = Sub_CategoryService;

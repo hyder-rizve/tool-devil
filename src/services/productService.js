@@ -55,8 +55,57 @@ class ProductService {
     return product;
   }
 
+  static async getProductByBrandId(brand_id) {
+    if (!brand_id || isNaN(brand_id)) {
+      const error = new Error("Valid brand ID is required");
+      error.status = 400;
+      throw error;
+    }
 
+    const product = await ProductModel.findProductByBrandId(brand_id);
+    if (!product) {
+      const error = new Error("Product not found");
+      error.status = 404;
+      throw error;
+    }
 
+    return product;
+  }
+
+  static async getProductBySubCategoryId(sub_category_id) {
+    if (!sub_category_id || isNaN(sub_category_id)) {
+      const error = new Error("Valid sub category ID is required");
+      error.status = 400;
+      throw error;
+    }
+
+    const product = await ProductModel.findProductBySubCategoryId(sub_category_id);
+    if (!product) {
+      const error = new Error("Product not found");
+      error.status = 404;
+      throw error;
+    }
+
+    return product;
+  }
+
+  static async getProductBySlug(slug) {
+    if (!slug) {
+      const error = new Error("Valid slug is required");
+      error.status = 400;
+      throw error;
+    }
+
+    const product = await ProductModel.findProductBySlug(slug);
+    if (!product) {
+      const error = new Error("Product not found");
+      error.status = 404;
+      throw error;
+    }
+
+    return product;
+  }
+  
 }
 
 module.exports = ProductService;

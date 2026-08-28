@@ -40,7 +40,19 @@ class Sub_CategoryController {
     }
   }
 
-
+  static async getsub_categoryByParentId(req, res) {
+    try {
+      const sub_category = await Sub_CategoryService.getSub_categoryByParentId(
+        req.params.parent_id,
+      );
+      res.status(200).json({ success: true, data: sub_category });
+    } catch (error) {
+      res
+        .status(error.status || 500)
+        .json({ success: false, message: error.message });
+    }
+  }
+  
 }
 
 module.exports = Sub_CategoryController;
