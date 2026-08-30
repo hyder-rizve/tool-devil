@@ -7,7 +7,7 @@ const db = require("./config/db");
 dotenv.config();
 
 // Import all routes
-//const userRoute = require("./routes/userRoute");
+const userRoute = require("./routes/userRoute");
 const sub_categoryRoute = require("./routes/sub_categoryRoute");
 const productRoute = require("./routes/productRoute");
 //const orderRoute = require("./routes/orderRoute");
@@ -23,61 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API Routes
-//app.use("/api", userRoute);
+app.use("/api", userRoute);
 app.use("/api", sub_categoryRoute);
 app.use("/api", productRoute);
 //app.use("/api", orderRoute);
 app.use("/api", categoryRoute);
 //app.use("/api", brandRoute);
-app.post("/api/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    const [rows] = await db.query(
-      'SELECT * FROM users WHERE email = ?',
-      [email]
-    );
-
-    if (rows.length === 0) {
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid email or password'
-      });
-    }
-
-    const user = rows[0];
-
-    const isPasswordValid = await bcrypt.compare(
-      password,
-      user.password_hash
-    );
-
-    if (!isPasswordValid) {
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid email or password'
-      });
-    }
-
-    // Login successful
-    res.json({
-      success: true,
-      message: 'Login successful',
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email
-      }
-    });
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      success: false,
-      message: 'Server error'
-    });
-  }
-});
 
 // Home route
 app.get("/", (req, res) => {

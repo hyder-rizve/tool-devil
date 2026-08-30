@@ -1,4 +1,4 @@
-const CategoryModel = require("../model/CategoryModel");
+const CategoryModel = require("../model/categoryModel");
 
 class CategoryService {
   static async createCategory(categoryData) {

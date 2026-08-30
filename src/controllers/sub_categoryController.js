@@ -1,4 +1,4 @@
-const Sub_CategoryService = require("../services/Sub_CategoryService");
+const Sub_CategoryService = require("../services/sub_categoryService");
 
 class Sub_CategoryController {
   static async createInventory(req, res) {
