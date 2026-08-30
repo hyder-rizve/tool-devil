@@ -10,7 +10,7 @@ dotenv.config();
 const userRoute = require("./routes/userRoute");
 const sub_categoryRoute = require("./routes/sub_categoryRoute");
 const productRoute = require("./routes/productRoute");
-//const orderRoute = require("./routes/orderRoute");
+const orderRoute = require("./routes/orderRoute");
 const categoryRoute = require("./routes/categoryRoute");
 //const brandRoute = require("./routes/brandRoute");
 
@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", userRoute);
 app.use("/api", sub_categoryRoute);
 app.use("/api", productRoute);
-//app.use("/api", orderRoute);
+app.use("/api", orderRoute);
 app.use("/api", categoryRoute);
 //app.use("/api", brandRoute);
 
